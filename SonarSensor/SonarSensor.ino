@@ -1,4 +1,4 @@
- #include<Servo.h>
+#include<Servo.h>
 
 int echopin = 12;
 int trigerpin = 11;
@@ -28,10 +28,11 @@ void loop() {
 
   distanse = pulseIn(echopin, HIGH);
   cm = (distanse / 2) / 29.1;
-//  Serial.print(distanse);
-//  Serial.print(",");
+  //  Serial.print(distanse);
+  //  Serial.print(",");
   Serial.print(cm);
   Serial.print("cm");
+  Serial.println();
 
   //  if (cm < 5) {
   //    //    digitalWrite(7, HIGH);
@@ -40,12 +41,11 @@ void loop() {
   //    t.write(0);
   //  }
 
-  int p = map(cm, 5, 15, 180, 0);
-  Serial.print("  coner = ");
-  Serial.print(p);
-  Serial.println();
-  t.write(p);
+  int p = map(cm, 5, 15, 255, 0);
+  //    t.write(p);
+  analogWrite(5, p);
   delay(100);
+
 }
 
 void motor() {
